@@ -1,7 +1,6 @@
 from db import Db
 
 class User: 
-    
     _db = Db()
     _cursor = _db.cursor
 
