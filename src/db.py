@@ -21,6 +21,19 @@ class Db:
                 email TEXT,
                 phone TEXT)
         """)
+        
+        self.cursor.execute(""" 
+            CREATE TABLE IF NOT EXISTS users 
+                (id INTEGER PRIMARY KEY AUTOINCREMENT,  
+                login TEXT, 
+                password TEXT,
+                isAdmin BOOLEAN)
+        """)
+
+
+        self.connection.commit()
+
+    def save(self):
         self.connection.commit()
 
     def create_client(self, client: ()):
@@ -51,4 +64,4 @@ class Db:
     
 f = Db()
 #f.create_client(('sadsadasd', True, 'sfdsfdsfsdfsdf@sdssds', '029128391238'))
-print(f.get_clients())
+#print(f.get_clients())
