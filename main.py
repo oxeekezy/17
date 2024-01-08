@@ -1,13 +1,12 @@
-import sys
-from login import Ui_MainWindow
+from ui_login import Ui_MainWindow as login
 from PyQt5 import uic, QtWidgets
 
-class Main(object):
+class Main():
     def __init__(self):
         self.open_login()
         
-    def open_login():
-        pass
+    def open_login(self):
+        login.show()
 
 
 Main()

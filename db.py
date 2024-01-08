@@ -62,6 +62,6 @@ class Db:
 
         
     
-f = Db()
+#f = Db()
 #f.create_client(('sadsadasd', True, 'sfdsfdsfsdfsdf@sdssds', '029128391238'))
 #print(f.get_clients())

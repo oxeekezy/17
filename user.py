@@ -19,7 +19,7 @@ class User:
     def login(self, login: str, password: str):
         user = self._get_user(login=login)
 
-        if(user.password != password):
+        if(user is None or user[2] != password):
             return False
         
         return True
@@ -30,5 +30,15 @@ class User:
             WHERE login=?
         """
         self._cursor.execute(sql, (login,))
-        return self._cursor.fetchall()[0]
+        result = self._cursor.fetchall()
 
+        if(len(result)>0):
+            return result[0]
+
+        return None
+
+
+
+#u = User()
+#u.create_user(('oxeek', '123', True))
+#u.create_user(('123', '123', False))
