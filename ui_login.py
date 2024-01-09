@@ -1,8 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ui_clients import Ui_MainWindow as clients
 import messages
 
-
 class Ui_MainWindow(object):
+    app = None
+
+    def __init__(self, app):
+        self.app = app
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(311, 284)
@@ -50,14 +55,18 @@ class Ui_MainWindow(object):
 
         if(not canLogin):
             messages.show_critical_messagebox('Неправильный логин или пароль!')
+        else:
+           
+           clients.show(self.app)
 
 
-    def show():
+    def show(self):
         import sys
-        app = QtWidgets.QApplication(sys.argv)
+        #self.app = QtWidgets.QApplication(sys.argv)
         MainWindow = QtWidgets.QMainWindow()
-        ui = Ui_MainWindow()
+        ui = Ui_MainWindow(self.app)
         ui.setupUi(MainWindow)
         MainWindow.show()
-        sys.exit(app.exec_())
-    
+        sys.exit(self.app.exec_())
+
+        
