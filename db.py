@@ -19,7 +19,8 @@ class Db:
                 fullname TEXT, 
                 isCurrent BOOLEAN,
                 email TEXT,
-                phone TEXT)
+                phone TEXT,
+                fax TEXT)
         """)
         
         self.cursor.execute(""" 
@@ -38,8 +39,8 @@ class Db:
 
     def create_client(self, client: ()):
         sql ="""
-                INSERT INTO clients(fullname, isCurrent, email, phone)
-                VALUES(?,?,?,?)          
+                INSERT INTO clients(fullname, isCurrent, email, phone, fax)
+                VALUES(?,?,?,?,?)          
         """
         self.cursor.execute(sql, client)
         self.connection.commit()
@@ -63,5 +64,5 @@ class Db:
         
     
 #f = Db()
-#f.create_client(('sadsadasd', True, 'sfdsfdsfsdfsdf@sdssds', '029128391238'))
+#f.create_client(('sadsadasd', True, 'sfdsfdsfsdfsdf@sdssds', '029128391238', '8888'))
 #print(f.get_clients())
