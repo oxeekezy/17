@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import messages
 
 
 class Ui_MainWindow(object):
@@ -28,6 +29,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -42,14 +44,20 @@ class Ui_MainWindow(object):
         self.loginBtn.setText(_translate("MainWindow", "Вход"))
 
     def loginClick(self):
-        print("CLICKED!!!!")
+        from user import User
+        us = User()
+        canLogin = User.login(us, self.loginBox.text(), self.passwordBox.text())
+
+        if(not canLogin):
+            messages.show_critical_messagebox('Неправильный логин или пароль!')
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+    def show():
+        import sys
+        app = QtWidgets.QApplication(sys.argv)
+        MainWindow = QtWidgets.QMainWindow()
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        sys.exit(app.exec_())
+    
